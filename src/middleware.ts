@@ -5,7 +5,7 @@ import authConfig from './auth.config';
 const {auth} = NextAuth(authConfig);
 
 const protectedRoutes: String[] = [
-    '/information'
+    '/'
 ];
 
 export default auth((req) => {
@@ -20,7 +20,6 @@ export default auth((req) => {
 
     if(nextUrl.pathname.startsWith('/auth')) {
         if(isLoggedIn) {
-            console.log('hola');
             return Response.redirect(new URL('/', nextUrl));
         }
     }
@@ -30,6 +29,7 @@ export default auth((req) => {
             return Response.redirect(new URL('/auth/login', nextUrl));
         }
     }
+
     // if (!req.auth) {
     //     const url = req.url.replace(req.nextUrl.pathname, '/login');
     //     return Response.redirect(url);

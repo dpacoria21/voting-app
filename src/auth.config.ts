@@ -18,7 +18,6 @@ export default {
                 if(!user) {
                     return null;
                 }
-                console.log(user);
                 if(user.email==='dpacoria@unsa.edu.pe' && user.password==='123456') {
                     return user;
                 }

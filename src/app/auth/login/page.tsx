@@ -1,9 +1,19 @@
+import LoginForm from './ui/LoginForm';
+
 export default function LoginPage() {
     return(
         <>
+
             <h1>
-                Login Page
+                Ingresar a Votar
             </h1>
+
+
+            <div>
+                <LoginForm />
+            </div>
+
+
         </>
     );
 }
