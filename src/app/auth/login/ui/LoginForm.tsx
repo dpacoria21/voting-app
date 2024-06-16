@@ -1,6 +1,7 @@
 'use client';
 
 import { authenticate } from '@/actions/auth/login';
+import InputForm from '@/components/Forms/InputForm';
 import { useFormState, useFormStatus } from 'react-dom';
 
 
@@ -8,33 +9,25 @@ export default function LoginForm() {
 
     const [state, dispatch] = useFormState(authenticate, undefined);
 
-    // console.log(state);
-
     return (
-        <div>
+        <section className='break-words sm:break-normal'>
             <form action={dispatch}>
 
-                <div>
-                    <label htmlFor="email">Correo Electrónico</label>
-                    <input id='email' type="email" name='email'/>
-                </div>
+                <InputForm placeholder='example@gmail.com' label='Correo Electrónico' type='email' name='email'/>
 
-                <div>
-                    <label htmlFor="password">Contraseña</label>
-                    <input id='password' type="password" name='password'/>
-                </div>
+                <InputForm label='Contraseña' name='password' type='password'/>
 
                 <LoginButton />
 
                 {state && (
-                    <>
-                        <p className="text-sm text-red-500">{state}</p>
-                    </>
+                    <div className='flex justify-center items-center mt-3'>
+                        <span className="bg-red-500 px-2 py-1 text-center text-md font-medium text-red-50">⚠ {state}</span>
+                    </div>
                 )}
 
 
             </form>
-        </div>
+        </section>
     );
 }
 
@@ -42,8 +35,10 @@ function LoginButton() {
     const {pending} = useFormStatus();
 
     return(
-        <button type='submit' className={`${pending ? 'bg-blue-200': 'bg-blue-500'}  py-1 px-2 rounded-sm`} disabled={pending}>
-            Ingresar
-        </button>
+        <div className='w-full flex'>
+            <button type='submit' className={`w-full mt-2 font-semibold text-xl  ${pending ? 'bg-blue-200 text-slate-700': 'bg-blue-800 text-slate-200'}  py-2 rounded-sm`} disabled={pending}>
+                Ingresar
+            </button>
+        </div>
     );
 }
