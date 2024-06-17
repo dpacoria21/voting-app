@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import LoginForm from './ui/LoginForm';
+import Link from 'next/link';
 
 export default function LoginPage() {
     return(
@@ -13,10 +14,17 @@ export default function LoginPage() {
                 className='mx-auto'
             />
 
+
+
             <div>
                 <LoginForm />
             </div>
 
+            <div className='flex mt-2 justify-end'>
+                <Link className='break-words text-[#454545]' href={'/auth/register'}>
+                    ¿No tienes una cuenta?
+                </Link>
+            </div>
 
         </section>
     );
