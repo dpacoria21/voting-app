@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import Sidebar from '../components/sidebar/Sidebar';
 
 export const metadata: Metadata = {
     title: 'Voting App',
@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 export default function VotingLayout({children}: Readonly<{children: React.ReactNode}>) {
 
     return (
-        <main>
+        <main className='flex'>
+
+            <Sidebar />
             {children}
         </main>
     );

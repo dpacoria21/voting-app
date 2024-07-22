@@ -1,6 +1,7 @@
 import type { NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
+import { getBearerToken } from './actions/auth/login-fetching';
 
 // Notice this is only an object, not a full Auth.js instance
 export default {
@@ -14,12 +15,14 @@ export default {
                 }).safeParse(credentials);
 
                 const user = parsedCredentials.data;
+                
+                const dataUser = await getBearerToken(user?.email, user?.password);
+                // console.log({dataUser});
 
-                if(!user) {
-                    return null;
-                }
-                if(user.email==='dpacoria@unsa.edu.pe' && user.password==='123456') {
-                    return user;
+
+                if(dataUser) {
+                    dataUser.email = user?.email;
+                    return dataUser;
                 }
 
                 return null;
