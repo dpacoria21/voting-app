@@ -6,7 +6,10 @@ import Image from 'next/image';
 export default async function UserInfo() {
 
     const session = await auth();
-    
+
+    const fp = session?.user?.firstName[0].toLocaleUpperCase() ?? '';
+    const sp = session?.user?.firstName.slice(1) ?? '';
+
     return (
         <section className='flex flex-col gap-3 justify-center items-center'>
             <Image
@@ -16,9 +19,11 @@ export default async function UserInfo() {
                 height={75}
                 className='rounded-md'
             />
+
+            {/* <FaUserCircle size={85}/> */}
+
             <p className='break-words'>
-                {session?.user?.email?.split('@')[0]}
-                {/* Hola a todos */}
+                {fp+sp}
             </p>
         </section>
     );

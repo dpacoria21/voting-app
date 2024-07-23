@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function VotingLayout({children}: Readonly<{children: React.ReactNode}>) {
 
     return (
-        <main className='flex'>
+        <main className='flex bg-blue-100'>
 
             <Sidebar />
             {children}

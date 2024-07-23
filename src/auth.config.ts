@@ -2,8 +2,8 @@ import type { NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { getBearerToken } from './actions/auth/login-fetching';
+import { getUser } from './actions/users/getUser';
 
-// Notice this is only an object, not a full Auth.js instance
 export default {
     providers: [
         Credentials({
@@ -16,12 +16,12 @@ export default {
 
                 const user = parsedCredentials.data;
                 
-                const dataUser = await getBearerToken(user?.email, user?.password);
-                // console.log({dataUser});
+                const tokenUser = await getBearerToken(user?.email, user?.password);
+                const dataUser = await getUser(tokenUser.access_token, user!.email);
 
 
                 if(dataUser) {
-                    dataUser.email = user?.email;
+                    dataUser.access_token = tokenUser.access_token;
                     return dataUser;
                 }
 

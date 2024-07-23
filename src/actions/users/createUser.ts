@@ -22,6 +22,7 @@ export const createUser = async(user: User) => {
     
         return await createdUser.json();
     }catch(e) {
-        return `${e}`;
+        console.log(`${e}`);
+        return e;
     }
 };

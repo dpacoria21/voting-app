@@ -1,9 +1,10 @@
 'use server';
 
-export const getUser = async(token: string, email: string) => {
+export const getWinner = async(token: string, id: string) => {
+
     try {
 
-        const user = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/keycloak/user/search-email/${email}`, {
+        const winner = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/votes/party/winner/${id}`, {
             method: 'GET',
             headers:  {
                 'Content-Type': 'application/json',
@@ -11,9 +12,10 @@ export const getUser = async(token: string, email: string) => {
             },
         });
     
-        return await user.json();
+        return await winner.json();
+
     }catch(e) {
         console.log(`${e}`);
-        // return e;
+        return [];
     }
 };
